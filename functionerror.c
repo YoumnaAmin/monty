@@ -11,7 +11,7 @@ void err(int errorstyle, ...)
 	char *ay;
 
 	va_start(ag, errorstyle);
-	switch (error_code)
+	switch (errorstyle)
 	{
 		case 1:
 			fprintf(stderr, "USAGE: monty file\n");
@@ -48,8 +48,8 @@ void errtwo(int errorstyle, ...)
 	char *ay;
 	int ly_num;
 
-	va_start(ag, error_code);
-	switch (error_code)
+	va_start(ag, errorstyle);
+	switch (errorstyle)
 	{
 		case 7:
 			fprintf(stderr, "L%d: can't pop an empty stack\n",
@@ -63,6 +63,32 @@ void errtwo(int errorstyle, ...)
 		case 9:
 			fprintf(stderr, "L%d: division by zero\n",
 				va_arg(ag, unsigned int));
+			break;
+		default:
+			break;
+	}
+	free_nodes();
+	exit(EXIT_FAILURE);
+}
+
+/**
+ * string_err - handles errors.
+ * @errorstyle: The error codes are the following:
+ */
+void errthree(int errorstyle, ...)
+{
+	va_list ag;
+	int ly_num;
+
+	va_start(ag, errorstyle);
+	ly_num = va_arg(ag, int);
+	switch (errorstyle)
+	{
+		case 10:
+			fprintf(stderr, "L%d: can't pchar, value out of range\n", ly_num);
+			break;
+		case 11:
+			fprintf(stderr, "L%d: can't pchar, stack empty\n", ly_num);
 			break;
 		default:
 			break;
