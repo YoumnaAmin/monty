@@ -51,7 +51,6 @@ void _findfunc(char *opcode, char *value, int ln, int format)
 
 void get_func(op_func func, char *op, char *val, int ln, int format)
 {
-	stack_t *head = NULL;
 	stack_t *node;
 	int flag;
 	int i;
@@ -80,6 +79,8 @@ void get_func(op_func func, char *op, char *val, int ln, int format)
 		node = create_node(atoi(val) * flag);
 		if (format == 0)
 			func(&node, ln);
+		if (format == 1)
+			add_to_queue(&node, ln);
 	}
 	else
 		func(&head, ln);
@@ -124,4 +125,29 @@ void node_free(void)
 		head = head->next;
 		free(tmp);
 	}
+}
+
+/**
+ * add_to_queue - Adds a node to the queue.
+ * @new_node: Pointer to the new node.
+ * @ln: line number of the opcode.
+ */
+void add_to_queue(stack_t **new_node, __attribute__((unused))unsigned int ln)
+{
+	stack_t *tmp;
+
+	if (new_node == NULL || *new_node == NULL)
+		exit(EXIT_FAILURE);
+	if (head == NULL)
+	{
+		head = *new_node;
+		return;
+	}
+	tmp = head;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+
+	tmp->next = *new_node;
+	(*new_node)->prev = tmp;
+
 }

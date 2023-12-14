@@ -36,12 +36,15 @@ void err(int errorstyle, ...)
 				va_arg(ag, int));
 			break;
 		default:
-			break;	
+			break;
 	}
-	free_nodes();
+	node_free();
 	exit(EXIT_FAILURE);
 }
-
+/**
+ * errtwo - Prints appropiate error messages determined by their error code.
+ * @errorstyle: error cases in the follwing
+ */
 void errtwo(int errorstyle, ...)
 {
 	va_list ag;
@@ -67,12 +70,12 @@ void errtwo(int errorstyle, ...)
 		default:
 			break;
 	}
-	free_nodes();
+	node_free();
 	exit(EXIT_FAILURE);
 }
 
 /**
- * string_err - handles errors.
+ * errthree - handles errors.
  * @errorstyle: The error codes are the following:
  */
 void errthree(int errorstyle, ...)
@@ -93,6 +96,6 @@ void errthree(int errorstyle, ...)
 		default:
 			break;
 	}
-	free_nodes();
+	node_free();
 	exit(EXIT_FAILURE);
 }
