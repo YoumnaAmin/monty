@@ -19,6 +19,9 @@ void _findfunc(char *opcode, char *value, int ln, int format)
 		{"pall", _pall},
 		{"pint", print_top},
 		{"pop", _pop},
+		{"nop", nop_function},
+		{"swap", swap_nodes},
+		{"add", adds},
 		{NULL, NULL}
 	};
 
@@ -34,10 +37,7 @@ void _findfunc(char *opcode, char *value, int ln, int format)
 		}
 	}
 	if (flag == 1)
-	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", ln, opcode);
-		exit(EXIT_FAILURE);
-	}
+		err(3, ln, opcode);
 }
 
 /**
@@ -64,17 +64,11 @@ void get_func(op_func func, char *op, char *val, int ln, int format)
 			flag = -1;
 		}
 		if (val == NULL)
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", ln);
-			exit(EXIT_FAILURE);
-		}
+			err(5, ln);
 		for (i = 0; val[i] != '\0'; i++)
 		{
 			if (isdigit(val[i]) == 0)
-			{
-				fprintf(stderr, "L%d: usage: push integer\n", ln);
-				exit(EXIT_FAILURE);
-			}
+				err(5, ln);
 		}
 		node = create_node(atoi(val) * flag);
 		if (format == 0)
@@ -99,9 +93,7 @@ stack_t *create_node(int n)
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
-		node_free();
-		exit(EXIT_FAILURE);
+		err(4);
 	}
 	node->next = NULL;
 	node->prev = NULL;
