@@ -158,7 +158,7 @@ void sub_ay(stack_t **stack, unsigned int line_ay)
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 
-		more_err(8, line_ay, "sub");
+		errtwo(8, line_ay, "sub");
 
 
 	(*stack) = (*stack)->next;
@@ -178,7 +178,7 @@ void mul_ay(stack_t **stack, unsigned int line_ay)
 	int o;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		more_err(8, line_ay, "mul");
+		errtwo(8, line_ay, "mul");
 
 	(*stack) = (*stack)->next;
 	o = (*stack)->n * (*stack)->prev->n;

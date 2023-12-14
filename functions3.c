@@ -60,10 +60,10 @@ void div_ay(stack_t **stack, unsigned int line_ay)
 	int q;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		more_err(8, line_ay, "div");
+		errtwo(8, line_ay, "div");
 
 	if ((*stack)->n == 0)
-		more_err(9, line_ay);
+		errtwo(9, line_ay);
 	(*stack) = (*stack)->next;
 	q = (*stack)->n / (*stack)->prev->n;
 	(*stack)->n = q;
