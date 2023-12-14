@@ -17,11 +17,16 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
+		node_free();
 		exit(EXIT_FAILURE);
 	}
 	fd = fopen(argv[1], "r");
 	if (fd == NULL || fd == NULL)
+	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		node_free();
+		exit(EXIT_FAILURE);
+	}
 	for (line_number = 1; getline(&buffer, &len, fd) != -1; line_number++)
 	{
 		format = line_tok(buffer, line_number, format);
@@ -43,7 +48,7 @@ int main(int argc, char *argv[])
 int line_tok(char *buffer, int line_number, int format)
 {
 	char *opcode, *num;
-	const char *delim = "\n ";
+	const char *delim = "\n$ ";
 
 	if (buffer == NULL)
 	{

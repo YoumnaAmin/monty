@@ -1,5 +1,5 @@
 #include "monty.h"
-extern stack_t *head;
+
 
 /**
  * _findfunc - find the appropriate function for the opcode
