@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 int line_tok(char *buffer, int line_number, int format)
 {
 	char *opcode, *num;
-	const char *delim = "\n\t\r ";
+	const char *delim = "\n\t ";
 
 	if (buffer == NULL)
 		err(4);
