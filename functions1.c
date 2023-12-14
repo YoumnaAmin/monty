@@ -143,3 +143,43 @@ void add_to_queue(stack_t **new_node, __attribute__((unused))unsigned int ln)
 	(*new_node)->prev = tmp;
 
 }
+
+/**
+ * sub_ay - Adds the top two elements 
+ * @stack: Pointer to a pointer pointing to top
+ * @line_ay: Interger representing the line number
+ */
+void sub_ay(stack_t **stack, unsigned int line_ay)
+{
+	int v;
+
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+
+		more_err(8, line_ay, "sub");
+
+
+	(*stack) = (*stack)->next;
+	v = (*stack)->n - (*stack)->prev->n;
+	(*stack)->n = v;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
+}
+
+/**
+ * mul_ay - Adds the top two elements 
+ * @stack: Pointer to a pointer pointing to top 
+ * @line_ay: Interger representing the line 
+ */
+void mul_ay(stack_t **stack, unsigned int line_ay)
+{
+	int o;
+
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+		more_err(8, line_ay, "mul");
+
+	(*stack) = (*stack)->next;
+	o = (*stack)->n * (*stack)->prev->n;
+	(*stack)->n = o;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
+	}
