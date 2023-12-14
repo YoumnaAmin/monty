@@ -47,13 +47,10 @@ int main(int argc, char *argv[])
 int line_tok(char *buffer, int line_number, int format)
 {
 	char *opcode, *num;
-	const char *delim = "\n\t ";
+	const char *delim = "\n\t$ ";
 
 	if (buffer == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
+		err(4);
 	opcode = strtok(buffer, delim);
 	if (strcmp(opcode, "stack") == 0)
 		return (0);
