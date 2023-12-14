@@ -12,7 +12,7 @@
 
 void _findfunc(char *opcode, char *value, int ln, int format)
 {
-	int i, flag;
+	int i, f;
 
 	instruction_t opcode_list[] = {
 		{"push", _push},
@@ -22,24 +22,24 @@ void _findfunc(char *opcode, char *value, int ln, int format)
 		{"nop", nop_function},
 		{"swap", swap_nodes},
 		{"add", adds},
-	        {"sub", sub_ay},
-	        {"mul", mul_ay},
-	        {"div", div_ay},
+		{"sub", sub_ay},
+		{"mul", mul_ay},
+		{"div", div_ay},
 		{NULL, NULL}
 	};
 
 	if (opcode[0] == '#')
 		return;
 
-	for (flag = 1, i = 0; opcode_list[i].opcode != NULL; i++)
+	for (f = 1, i = 0; opcode_list[i].opcode != NULL; i++)
 	{
 		if (strcmp(opcode, opcode_list[i].opcode) == 0)
 		{
 			get_func(opcode_list[i].f, opcode, value, ln, format);
-			flag = 0;
+			f = 0;
 		}
 	}
-	if (flag == 1)
+	if (f == 1)
 		err(3, ln, opcode);
 }
 
@@ -146,43 +146,3 @@ void add_to_queue(stack_t **new_node, __attribute__((unused))unsigned int ln)
 	(*new_node)->prev = tmp;
 
 }
-
-/**
- * sub_ay - Adds the top two elements 
- * @stack: Pointer to a pointer pointing to top
- * @line_ay: Interger representing the line number
- */
-void sub_ay(stack_t **stack, unsigned int line_ay)
-{
-	int v;
-
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-
-		errtwo(8, line_ay, "sub");
-
-
-	(*stack) = (*stack)->next;
-	v = (*stack)->n - (*stack)->prev->n;
-	(*stack)->n = v;
-	free((*stack)->prev);
-	(*stack)->prev = NULL;
-}
-
-/**
- * mul_ay - Adds the top two elements 
- * @stack: Pointer to a pointer pointing to top 
- * @line_ay: Interger representing the line 
- */
-void mul_ay(stack_t **stack, unsigned int line_ay)
-{
-	int o;
-
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-		errtwo(8, line_ay, "mul");
-
-	(*stack) = (*stack)->next;
-	o = (*stack)->n * (*stack)->prev->n;
-	(*stack)->n = o;
-	free((*stack)->prev);
-	(*stack)->prev = NULL;
-	}

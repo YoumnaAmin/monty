@@ -70,3 +70,21 @@ void div_ay(stack_t **stack, unsigned int line_ay)
 	free((*stack)->prev);
 	(*stack)->prev = NULL;
 }
+
+/**
+ * mul_ay - Adds the top two elements
+ * @stack: Pointer to a pointer pointing to top
+ * @line_ay: Interger representing the line
+ */
+void mul_ay(stack_t **stack, unsigned int line_ay)
+{
+	int o;
+
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+		errtwo(8, line_ay, "mul");
+	(*stack) = (*stack)->next;
+	o = (*stack)->n * (*stack)->prev->n;
+	(*stack)->n = o;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
+}

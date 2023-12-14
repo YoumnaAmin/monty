@@ -74,3 +74,20 @@ void print_top(stack_t **stack, unsigned int line_number)
 		errtwo(6, line_number);
 	printf("%d\n", (*stack)->n);
 }
+/**
+ * sub_ay - Adds the top two elements
+ * @stack: Pointer to a pointer pointing to top
+ * @line_ay: Interger representing the line numberd
+ */
+void sub_ay(stack_t **stack, unsigned int line_ay)
+{
+	int v;
+
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+		errtwo(8, line_ay, "sub");
+	(*stack) = (*stack)->next;
+	v = (*stack)->n - (*stack)->prev->n;
+	(*stack)->n = v;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
+}
