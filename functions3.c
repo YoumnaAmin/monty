@@ -49,3 +49,24 @@ void nop_function(stack_t **stack, unsigned int line_ay)
 	(void)stack;
 	(void)line_ay;
 }
+
+/**
+ * div_ay- Adds the top two elements of the stack.
+ * @stack: Pointer to a pointer pointing to top node of the stack.
+ * @line_ay: Interger representing the line number of of the opcode.
+ */
+void div_ay(stack_t **stack, unsigned int line_ay)
+{
+	int q;
+
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+		errtwo(8, line_ay, "div");
+
+	if ((*stack)->n == 0)
+		errtwo(9, line_ay);
+	(*stack) = (*stack)->next;
+	q = (*stack)->n / (*stack)->prev->n;
+	(*stack)->n = q;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
+}

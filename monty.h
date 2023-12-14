@@ -60,4 +60,7 @@ void swap_nodes(stack_t **stack, unsigned int line_number);
 void free_nodes(void);
 void more_err(int errorstyle, unsigned int line_number, char *instruction);
 void add_to_queue(stack_t **, unsigned int);
+void mul_ay(stack_t **stack, unsigned int line_ay);
+void sub_ay(stack_t **stack, unsigned int line_ay);
+void div_ay(stack_t **stack, unsigned int line_ay);
 #endif
