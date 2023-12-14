@@ -59,7 +59,7 @@ void get_func(op_func func, char *op, char *val, int ln, int format)
 	int i;
 
 	flag = 1;
-	if (strncmp(op, "push") == 0)
+	if (strcmp(op, "push") == 0)
 	{
 		if (val != NULL && val[0] == '-')
 		{
