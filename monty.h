@@ -20,9 +20,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -35,17 +35,20 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 extern stack_t *head;
+
 typedef void (*op_func)(stack_t **, unsigned int);
-
-
-
-
-
-
-}
+int line_tok(char *buffer, int line_number, int format);
+void _findfunc(char *opcode, char *value, int ln, int format);
+void get_func(op_func func, char *op, char *val, int ln, int format);
+stack_t *create_node(int n);
+void node_free(void);
+void _push(stack_t **new_node, __attribute__((unused))unsigned int ln);
+void _pall(stack_t **stack, unsigned int line_number);
+void _pop(stack_t **stack, unsigned int line_number);
+void print_top(stack_t **stack, unsigned int line_number);
 #endif
