@@ -22,6 +22,9 @@ void _findfunc(char *opcode, char *value, int ln, int format)
 		{"nop", nop_function},
 		{"swap", swap_nodes},
 		{"add", adds},
+	        {"sub", sub_ay},
+	        {"mul", mul_ay},
+	        {"div", div_ay},
 		{NULL, NULL}
 	};
 
