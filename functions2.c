@@ -36,7 +36,10 @@ void _pall(stack_t **stack, unsigned int line_number)
 
 	(void) line_number;
 	if (stack == NULL)
+	{
+		node_free();
 		exit(EXIT_FAILURE);
+	}
 	tmp = *stack;
 	while (tmp != NULL)
 	{
