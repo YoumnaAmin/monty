@@ -17,21 +17,17 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
-		node_free();
 		exit(EXIT_FAILURE);
 	}
 	fd = fopen(argv[1], "r");
 	if (fd == NULL || fd == NULL)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		node_free();
-		exit(EXIT_FAILURE);
-	}
+		err(2, argv[1]);
 	for (line_number = 1; getline(&buffer, &len, fd) != -1; line_number++)
 	{
 		format = line_tok(buffer, line_number, format);
 	}
 	free(buffer);
+	node_free();
 	fclose(fd);
 	return (0);
 }
