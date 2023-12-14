@@ -51,4 +51,12 @@ void _push(stack_t **new_node, __attribute__((unused))unsigned int ln);
 void _pall(stack_t **stack, unsigned int line_number);
 void _pop(stack_t **stack, unsigned int line_number);
 void print_top(stack_t **stack, unsigned int line_number);
+void adds(stack_t **stack, unsigned int line_ay);
+void nop_function(stack_t **stack, unsigned int line_ay);
+void err(int errorstyle, ...);
+void errtwo(int errorstyle, ...);
+void errthree(int errorstyle, ...);
+void swap_nodes(stack_t **stack, unsigned int line_number);
+void free_nodes(void);
+void more_err(int errorstyle, unsigned int line_number, char *instruction);
 #endif

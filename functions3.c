@@ -14,7 +14,7 @@ void swap_nodes(stack_t **stack, unsigned int line_number)
 	(*stack)->next = temp->next;
 	if (temp->next != NULL)
 		temp->next->prev = *stack;
-	tmp->next = *stack;
+	temp->next = *stack;
 	(*stack)->prev = temp;
 	temp->prev = NULL;
 	*stack = temp;
