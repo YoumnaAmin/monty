@@ -33,7 +33,6 @@ int main(int argc, char *argv[])
 	}
 	free(buffer);
 	fclose(fd);
-	/*Ay_nodes();*/
 	return (0);
 }
 
@@ -48,7 +47,7 @@ int main(int argc, char *argv[])
 int line_tok(char *buffer, int line_number, int format)
 {
 	char *opcode, *num;
-	const char *delim = "\n$ ";
+	const char *delim = "\n\t ";
 
 	if (buffer == NULL)
 	{
@@ -56,8 +55,10 @@ int line_tok(char *buffer, int line_number, int format)
 		exit(EXIT_FAILURE);
 	}
 	opcode = strtok(buffer, delim);
-	if (opcode == NULL)
-		return (format);
+	if (strcmp(opcode, "stack") == 0)
+		return (0);
+	if (strcmp(opcode, "queue") == 0)
+		return (1);
 	num = strtok(NULL, delim);
 	_findfunc(opcode, num, line_number, format);
 	return (format);
